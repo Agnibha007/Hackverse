@@ -120,8 +120,8 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <Link to="/dashboard">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Phi" className="h-8 w-auto hover:opacity-80 transition-opacity" />
-              <span className="text-neon-pink text-lg font-cyber font-black tracking-widest hover:text-neon-blue transition-colors">Phi</span>
+              <img src="/logo.png" alt="Phi" className="h-8 w-8 object-contain" />
+              <span className="text-neon-pink font-cyber font-black text-xl tracking-widest">Phi</span>
             </div>
           </Link>
           <div className="flex items-center gap-0.5">
@@ -158,8 +158,8 @@ export function Navigation() {
         <div className="px-4 h-12 flex items-center justify-between">
           <Link to="/dashboard">
             <div className="flex items-center gap-1.5">
-              <img src="/logo.png" alt="Phi" className="h-7 w-auto" />
-              <span className="text-neon-pink text-sm font-cyber font-black tracking-widest">Phi</span>
+              <img src="/logo.png" alt="Phi" className="h-7 w-7 object-contain" />
+              <span className="text-neon-pink font-cyber font-black text-base tracking-widest">Phi</span>
             </div>
           </Link>
           <div className="relative">

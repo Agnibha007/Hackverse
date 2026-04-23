@@ -21,11 +21,13 @@ The core idea is simple: studying feels more engaging when it's framed as a game
 
 **Subjects** — Organize missions and sessions by subject (Math, Physics, whatever you're studying). Each subject shows total minutes studied, missions completed, and a progress bar. The AI mentor also uses this data when giving advice.
 
-**ARIA (AI Mentor)** — A GROQ-powered chat assistant that's been given your actual profile data as context: your XP, level, streak, active missions, subjects, and today's productivity score. It gives personalized advice rather than generic study tips. Conversation history is saved to the database so it remembers previous sessions.
+**aria.ai** — A GROQ-powered chat assistant that's been given your actual profile data as context: your XP, level, streak, active missions, subjects, and today's productivity score. It gives personalized advice rather than generic study tips. Conversation history is saved to the database so it remembers previous sessions.
 
 **Analytics** — Daily productivity scores, weekly focus distribution charts, all-time records, and monthly trend summaries. Everything is calculated from real session data, not estimates.
 
-**Gamification** — XP system, levels (every 100 XP), focus streaks, and a daily goal progress bar. Small things, but they add up.
+**Collectibles** — Meme cards you earn by hitting milestones: signing up, creating your first mission, logging your first session, chatting with aria.ai for the first time, and every level up. There are 11 total. They live in the Drops section.
+
+**Gamification** — XP system, compounding levels (100 XP for level 2, 200 for level 3, 400 for level 4, doubling each time), focus streaks, and a daily goal progress bar.
 
 ---
 
@@ -35,18 +37,18 @@ The app is live. Just open it in your browser and create an account.
 
 You can sign up with an email and password, or use Google Sign-In to skip the verification step entirely. Google accounts are verified automatically and go straight to onboarding.
 
-If you sign up with email, you'll get a verification link in your inbox. Click it and you'll be taken directly into the app. Check your spam folder if it doesn't show up within a minute or two.
+If you sign up with email, you'll get a 6-digit verification code in your inbox. Enter it on the verification screen and you're in. Check your spam folder if it doesn't show up within a minute or two.
 
 ---
 
-## First time setup (onboarding)
+## First time setup
 
 After your first login, you'll go through a two-step setup:
 
-1. Pick a call sign — this is your username inside the app
+1. Pick a call sign — this is how you'll be addressed inside the app
 2. Set your main objective — what you're primarily studying for
 
-That's it. You'll land on the dashboard and can start using everything immediately.
+Both are saved and shown on your dashboard. After that, a quick walkthrough tour runs automatically covering every section of the app. It only shows once.
 
 ---
 
@@ -60,25 +62,23 @@ That's it. You'll land on the dashboard and can start using everything immediate
 
 **Stats** shows your full analytics breakdown — today's productivity score, your agent profile (level, XP, streak, total focus time), all-time records, weekly focus distribution, and a monthly trend summary.
 
-**ARIA** is the AI mentor. It already knows your stats when you open it — just start talking. Ask it to build a study plan, explain a concept, suggest what to work on today, or anything else study-related. Your conversation history is saved between sessions.
+**aria.ai** is the AI mentor. It already knows your stats when you open it — just start talking. Ask it to build a study plan, explain a concept, suggest what to work on today, or anything else study-related. Your conversation history is saved between sessions.
+
+**Drops** is the collectibles section. It shows all 11 meme cards — the ones you've earned are unlocked with the image and the date you got them, the rest show a lock until you hit the milestone.
 
 ---
 
 ## Your profile
 
-Click your username in the top navigation bar to open the profile menu. From there you can:
-
-- Edit your username
-- Sign out
-- Delete your account (requires typing your username to confirm — this is permanent)
+Click your username in the top navigation bar to open the profile menu. From there you can edit your username, sign out, or delete your account (requires typing your username to confirm — this is permanent).
 
 ---
 
 ## How XP and levels work
 
-You earn XP by completing missions. Each mission has an XP reward you set when creating it (between 10 and 500). Activating a mission also gives you a small bonus.
+You earn XP by completing missions. Each mission has an XP reward you set when creating it. Activating a mission also gives a small bonus.
 
-Every 100 XP moves you up a level. Your level is shown next to your username in the nav bar and on the analytics page.
+Levels use a compounding formula — 100 XP to reach level 2, 200 more for level 3, 400 for level 4, and so on. Each level requires double the XP of the previous one. Early levels are quick, later ones take real work.
 
 ---
 
@@ -88,9 +88,9 @@ Your daily score (0 to 100) is calculated from three things: missions completed 
 
 ---
 
-## How the AI mentor works
+## How aria.ai works
 
-ARIA uses Groq's Llama 3.3 70B model. Before every message, the backend builds a fresh context snapshot with your current stats — XP, level, streak, active missions, subjects studied, and today's score. It also includes the last 20 messages from your conversation so it can follow the thread.
+aria.ai uses Groq's Llama 3.3 70B model. Before every message, the backend builds a fresh context snapshot with your current stats — XP, level, streak, active missions, subjects studied, and today's score. It also includes the last 20 messages from your conversation so it can follow the thread.
 
 The system prompt tells it to give specific, data-driven advice rather than generic tips. If your streak is 0, it'll push you to start. If you've been studying Physics for 300 minutes this week, it'll factor that in. It's not a generic chatbot — it actually knows what you've been doing.
 
