@@ -1,6 +1,6 @@
 # Phi
 
-A gamified study dashboard built for students who want to actually enjoy tracking their productivity. Think cyberpunk aesthetics meets Pomodoro timer meets RPG progression system — you earn XP for completing study missions, maintain focus streaks, chat with an AI mentor that knows your actual stats, and organize everything by subject.
+A gamified study dashboard built for students who want to actually enjoy tracking their productivity. Think cyberpunk aesthetics meets Pomodoro timer meets RPG progression system — you earn XP for completing study missions, maintain focus streaks, chat with an AI mentor that knows your actual stats, organize everything by subject, and study together with friends in real time.
 
 The actual development history, commits, and code changes live in two separate repositories:
 
@@ -25,7 +25,9 @@ The core idea is simple: studying feels more engaging when it's framed as a game
 
 **Analytics** — Daily productivity scores, weekly focus distribution charts, all-time records, and monthly trend summaries. Everything is calculated from real session data, not estimates.
 
-**Collectibles** — Meme cards you earn by hitting milestones: signing up, creating your first mission, logging your first session, chatting with aria.ai for the first time, and every level up. There are 11 total. They live in the Drops section.
+**Squad** — Add friends, see when they're online or studying, chat one-on-one, start shared Pomodoro sessions, and compete on a collectibles leaderboard. Presence updates every 15 seconds. Chat persists between sessions.
+
+**Collectibles** — Meme cards you earn by hitting milestones: signing up, creating your first mission, logging your first session, chatting with aria.ai for the first time, and every level up. There are 11 total. When you earn one, a full-screen celebration popup appears with confetti. They live in the Drops section.
 
 **Gamification** — XP system, compounding levels (100 XP for level 2, 200 for level 3, 400 for level 4, doubling each time), focus streaks, and a daily goal progress bar.
 
@@ -56,15 +58,17 @@ Both are saved and shown on your dashboard. After that, a quick walkthrough tour
 
 **Dashboard** is your home base. It shows your active missions, XP, level, focus streak, daily goal progress, and a weekly overview. From here you can log a focus session or create a new mission without leaving the page.
 
-**Focus** is the Pomodoro timer. Pick a duration, set your focus quality level, hit start. When you're done (or want to stop early), the session gets saved and your stats update. The timer also has a manual session logger if you want to record something you already did.
+**Focus** is the Pomodoro timer. Pick a duration, set your focus quality level, hit start. When you're done (or want to stop early), the session gets saved and your stats update.
 
-**Subjects** lets you create color-coded study domains. Once you have subjects set up, you can tag missions and focus sessions to them. Each subject card shows how much time you've put in and how many missions you've completed for it.
+**Subjects** lets you create color-coded study domains. Tag missions and focus sessions to them. Each subject card shows how much time you've put in and how many missions you've completed.
 
 **Stats** shows your full analytics breakdown — today's productivity score, your agent profile (level, XP, streak, total focus time), all-time records, weekly focus distribution, and a monthly trend summary.
 
-**aria.ai** is the AI mentor. It already knows your stats when you open it — just start talking. Ask it to build a study plan, explain a concept, suggest what to work on today, or anything else study-related. Your conversation history is saved between sessions.
+**Squad** is the social hub. Search for other users by username, send friend requests, accept or reject incoming ones. Once you're friends, you can see their online/studying status in real time, open a chat window, start a shared study session together, or check where you rank on the collectibles leaderboard.
 
-**Drops** is the collectibles section. It shows all 11 meme cards — the ones you've earned are unlocked with the image and the date you got them, the rest show a lock until you hit the milestone.
+**aria.ai** is the AI mentor. It already knows your stats when you open it — just start talking. Ask it to build a study plan, explain a concept, suggest what to work on today, or anything else study-related.
+
+**Drops** is the collectibles section. It shows all 11 meme cards — earned ones show the image and the date you got them, locked ones show a padlock until you hit the milestone.
 
 ---
 
@@ -92,7 +96,19 @@ Your daily score (0 to 100) is calculated from three things: missions completed 
 
 aria.ai uses Groq's Llama 3.3 70B model. Before every message, the backend builds a fresh context snapshot with your current stats — XP, level, streak, active missions, subjects studied, and today's score. It also includes the last 20 messages from your conversation so it can follow the thread.
 
-The system prompt tells it to give specific, data-driven advice rather than generic tips. If your streak is 0, it'll push you to start. If you've been studying Physics for 300 minutes this week, it'll factor that in. It's not a generic chatbot — it actually knows what you've been doing.
+The system prompt tells it to give specific, data-driven advice rather than generic tips. If your streak is 0, it'll push you to start. If you've been studying Physics for 300 minutes this week, it'll factor that in.
+
+---
+
+## How Squad works
+
+Presence is updated every time you open the Squad page and polled every 15 seconds. When you start a study session, your status automatically changes to "studying" with the subject name visible to your friends. Ending the session sets you back to online.
+
+Chat messages are stored in the database and loaded when you open a conversation. The chat window polls for new messages every 5 seconds. You can only message people you're friends with.
+
+Study sessions are shared Pomodoro timers. The host creates one with a subject and duration, friends can see it in the "Join Friend" tab and jump in. The timer starts when the first person joins. The host can end it early; everyone else can leave without ending it for others.
+
+The leaderboard ranks you and your friends by collectibles earned, with XP as a tiebreaker. Gold, silver, and bronze for the top three.
 
 ---
 
