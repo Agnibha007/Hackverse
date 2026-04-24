@@ -63,3 +63,5 @@ Deployed on Render (backend, Docker container) and Vercel (frontend, static).
 ## What's not in here
 
 There's no mobile app, just a responsive web app with a bottom tab bar on mobile. There's no offline mode. Real-time features (presence, chat) use polling rather than WebSockets — presence polls every 15 seconds, chat every 5 seconds. The AI mentor requires a Groq API key. Email verification requires Gmail SMTP credentials — without them, signup auto-verifies locally.
+
+

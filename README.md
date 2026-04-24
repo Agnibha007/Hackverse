@@ -11,6 +11,8 @@ The live app is at: https://hackverse-frontend.vercel.app/
 
 ---
 
+
+
 ## What it does
 
 The core idea is simple: studying feels more engaging when it's framed as a game. Instead of a plain to-do list, you have **missions** with priority levels and XP rewards. Instead of a generic timer, you have a **focus mode** that records session quality and feeds into real analytics. Instead of a static dashboard, everything updates live as you work.

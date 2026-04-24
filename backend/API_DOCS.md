@@ -8,6 +8,8 @@ All endpoints return JSON in this shape:
 
 Protected endpoints need a Bearer token in the Authorization header. Tokens come from login/signup and last 7 days.
 
+
+
 ---
 
 ## Auth — `/api/auth`
